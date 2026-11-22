@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "rotadev"
+version = "1.0.0"
+description = "Catálogo local de trilhas e desafios com CLI e integração MCP."
+requires-python = ">=3.11"
+dependencies = ["mcp==2.3.0"]
+license = "MIT"
+authors = [{name = "Felipe Feitosa"}]
+
+[project.optional-dependencies]
+test = ["coverage==7.17.4"]
+
+[project.scripts]
+rotadev = "rotadev.cli:main"
+rotadev-mcp = "rotadev.server:main"
+
+[tool.setuptools.packages.find]
+include = ["rotadev*"]
+
+[tool.setuptools.package-data]
+rotadev = ["data/*.json"]
+
+[tool.coverage.run]
+branch = true
+source = ["rotadev"]
+parallel = true
+patch = ["subprocess"]
+
+[tool.coverage.report]
+show_missing = true
+fail_under = 85
